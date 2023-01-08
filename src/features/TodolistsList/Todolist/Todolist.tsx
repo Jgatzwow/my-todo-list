@@ -39,7 +39,7 @@ export const Todolist = React.memo(function ({
 
   const addTaskCallback = useCallback(
     async (title: string, helper: AddItemFormSubmitHelperType) => {
-      let thunk = tasksActions.addTask({
+      const thunk = tasksActions.addTask({
         title: title,
         todolistId: props.todolist.id,
       });
@@ -72,7 +72,7 @@ export const Todolist = React.memo(function ({
   const onFilterButtonClickHandler = useCallback(
     (filter: FilterValuesType) =>
       changeTodolistFilter({
-        filter: filter,
+        filter,
         id: props.todolist.id,
       }),
     [props.todolist.id]
@@ -130,7 +130,7 @@ export const Todolist = React.memo(function ({
           <Task key={t.id} task={t} todolistId={props.todolist.id} />
         ))}
         {!tasksForTodolist.length && (
-          <div style={{ padding: "10px", color: "grey" }}>No task</div>
+          <div style={{ padding: "10px", color: "grey" }}>No current tasks</div>
         )}
       </div>
       <div style={{ paddingTop: "10px" }}>

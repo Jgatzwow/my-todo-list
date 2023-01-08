@@ -29,7 +29,7 @@ export const TodolistsList: React.FC<PropsType> = ({ demo = false }) => {
 
   const dispatch = useAppDispatch();
 
-  const { fetchTodolistsTC, addTodolistTC } = useActions(todolistsActions);
+  const { fetchTodolistsTC } = useActions(todolistsActions);
 
   const addTodolistCallback = useCallback(
     async (title: string, helper: AddItemFormSubmitHelperType) => {

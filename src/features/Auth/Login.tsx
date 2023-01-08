@@ -57,7 +57,7 @@ export const Login = () => {
   });
 
   if (isLoggedIn) {
-    return <Navigate to={"/todos"} />;
+    return <Navigate to={"/"} />;
   }
 
   return (

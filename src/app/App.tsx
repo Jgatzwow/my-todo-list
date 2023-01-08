@@ -15,14 +15,13 @@ import { TodolistsList } from "../features/TodolistsList";
 import { ErrorSnackbar } from "../components/ErrorSnackbar/ErrorSnackbar";
 import { useSelector } from "react-redux";
 import { appActions } from "../features/Application";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { authActions, authSelectors, Login } from "../features/Auth";
 import {
   selectIsInitialized,
   selectStatus,
 } from "../features/Application/selectors";
 import { useActions } from "../utils/redux-utils";
-import { LoginLink } from "../components/LoginLink/LoginLink";
 
 export const App = () => {
   const status = useSelector(selectStatus);
@@ -58,12 +57,11 @@ export const App = () => {
     <div className="App">
       <ErrorSnackbar />
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className={"header__toolbar"}>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <Menu />
           </IconButton>
-          <Typography variant="h6">
-          </Typography>
+          <Typography variant="h6"></Typography>
           {isLoggedIn && (
             <Button color="inherit" onClick={logoutHandler}>
               Log out
@@ -75,7 +73,6 @@ export const App = () => {
       <Container fixed>
         <Routes>
           <Route path={"/"} element={<TodolistsList demo={false} />} />
-          <Route path={"/todos"} element={<TodolistsList demo={false} />} />
           <Route path={"/login"} element={<Login />} />
         </Routes>
       </Container>
