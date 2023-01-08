@@ -1,0 +1,13 @@
+.loginLink {
+    text-decoration: none;
+    color: #fff;
+    opacity: 1;
+}
+
+.loginLink:hover {
+    opacity: 0.8;
+}
+
+.loginLink:active {
+    color: gold;
+}

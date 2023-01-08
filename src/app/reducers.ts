@@ -7,8 +7,8 @@ import {tasksReducer, todolistsReducer} from '../features/TodolistsList'
 // непосредственно создаём store
 //export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export const rootReducer = combineReducers({
-    app: appReducer,
-    auth: authReducer,
-    todolists: todolistsReducer,
-    tasks: tasksReducer
+  app: appReducer,
+  auth: authReducer,
+  todolists: todolistsReducer,
+  tasks: tasksReducer
 })
