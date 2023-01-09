@@ -8,6 +8,7 @@ import {
 } from "../../utils/error-utils";
 import { TodolistType } from "../../api/types";
 import { ThunkError } from "../../utils/types";
+import {AxiosError} from 'axios';
 
 const { setAppStatus } = appActions;
 
@@ -22,8 +23,7 @@ const fetchTodolistsTC = createAsyncThunk<
     thunkAPI.dispatch(setAppStatus({ status: "succeeded" }));
     return { todolists: res.data };
   } catch (error) {
-    // @ts-ignore
-    return handleAsyncServerNetworkError(error, thunkAPI);
+    return handleAsyncServerNetworkError(error as AxiosError, thunkAPI);
   }
 });
 const removeTodolistTC = createAsyncThunk<{ id: string }, string, ThunkError>(
@@ -54,8 +54,7 @@ const addTodolistTC = createAsyncThunk<
       return handleAsyncServerAppError(res.data, thunkAPI, false);
     }
   } catch (error) {
-    // @ts-ignore
-    return handleAsyncServerNetworkError(error, thunkAPI, false);
+    return handleAsyncServerNetworkError(error as AxiosError, thunkAPI, false);
   }
 });
 const changeTodolistTitleTC = createAsyncThunk(
@@ -70,8 +69,7 @@ const changeTodolistTitleTC = createAsyncThunk(
         return handleAsyncServerAppError(res.data, thunkAPI);
       }
     } catch (error) {
-      // @ts-ignore
-      return handleAsyncServerNetworkError(error, thunkAPI, false);
+      return handleAsyncServerNetworkError(error as AxiosError, thunkAPI, false);
     }
   }
 );

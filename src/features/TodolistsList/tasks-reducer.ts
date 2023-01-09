@@ -13,6 +13,7 @@ import {
   TaskType,
   UpdateTaskModelType,
 } from "../../api/types";
+import { AxiosError } from "axios";
 
 const initialState: TasksStateType = {};
 
@@ -28,8 +29,7 @@ export const fetchTasks = createAsyncThunk<
     thunkAPI.dispatch(appActions.setAppStatus({ status: "succeeded" }));
     return { tasks, todolistId };
   } catch (error) {
-    // @ts-ignore
-    return handleAsyncServerNetworkError(error, thunkAPI);
+    return handleAsyncServerNetworkError(error as AxiosError, thunkAPI);
   }
 });
 export const removeTask = createAsyncThunk<
@@ -59,8 +59,7 @@ export const addTask = createAsyncThunk<
       });
     }
   } catch (err) {
-    // @ts-ignore
-    return handleAsyncServerNetworkError(err, thunkAPI, false);
+    return handleAsyncServerNetworkError(err as AxiosError, thunkAPI, false);
   }
 });
 export const updateTask = createAsyncThunk(
@@ -104,8 +103,7 @@ export const updateTask = createAsyncThunk(
         return handleAsyncServerAppError(res.data, thunkAPI);
       }
     } catch (error) {
-      // @ts-ignore
-      return handleAsyncServerNetworkError(error, thunkAPI);
+      return handleAsyncServerNetworkError(error as AxiosError, thunkAPI);
     }
   }
 );
@@ -176,6 +174,5 @@ export type UpdateDomainTaskModelType = {
   deadline?: string;
 };
 export type TasksStateType = {
-  [key: string]: Array<TaskType>
-}
-
+  [key: string]: Array<TaskType>;
+};
